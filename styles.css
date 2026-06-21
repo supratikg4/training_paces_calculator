@@ -1,0 +1,190 @@
+:root {
+    --ncsu-red: #CC0000;
+    --ncsu-red-hover: #A30000;
+    --text-main: #1a1a1a;
+    --text-muted: #757575;
+    --bg-light: #f9f9f9;
+    --border-color: #e5e5e5;
+    --font-stack: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: transparent;
+    color: var(--text-main);
+    margin: 0;
+    padding: 10px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.calc-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 0px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+}
+
+.calc-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-main);
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid var(--text-main);
+    padding-bottom: 15px;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+select, input[type="number"] {
+    font-family: var(--font-stack);
+    width: 100%;
+    padding: 14px 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-size: 15px;
+    border-radius: 0px;
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="text"] {
+    font-family: var(--font-stack);
+    width: 100%;
+    padding: 14px 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-size: 15px;
+    border-radius: 0px;
+    transition: all 0.2s ease-in-out;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 12px;
+}
+
+.time-field {
+    flex: 1;
+}
+
+.time-field label {
+    font-size: 9px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+button.calc-btn {
+    font-family: var(--font-stack);
+    width: 100%;
+    background-color: var(--ncsu-red);
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+button.calc-btn:hover {
+    background-color: var(--ncsu-red-hover);
+}
+
+.results-section {
+    margin-top: 35px;
+    display: none;
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+.vdot-banner {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding: 10px;
+    background: var(--bg-light);
+    border-left: 3px solid var(--ncsu-red);
+}
+
+.vdot-banner strong {
+    color: var(--ncsu-red);
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+table.pace-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table.pace-table th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--text-main);
+    padding: 10px 6px;
+    text-align: left;
+}
+
+table.pace-table td {
+    padding: 14px 6px;
+    font-size: 14px;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+}
+
+table.pace-table tr:last-child td {
+    border-bottom: none;
+}
+
+table.pace-table td.zone-title {
+    font-weight: 600;
+}
+
+table.pace-table td.pace-value {
+    font-weight: 700;
+    color: var(--ncsu-red);
+    text-align: right;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    .calc-wrapper { padding: 20px; }
+    table.pace-table td { font-size: 13px; padding: 12px 4px; }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Pace Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="calc-container">
+    <div class="calc-title">Training Pace Calculator</div>
+
+    <!-- DISTANCE FORM ENTRY-->
+    <div class="form-row">
+        <label for="distance-dropdown">Select Race Distance</label>
+        <select id="distance-dropdown" onchange="updateTextField()">
+            <option value="" disabled selected hidden></option>
+            <option value="800">800m</option>
+            <option value="1500">1500m</option>
+            <option value="1600">1600m</option>
+            <option value="1609.34">1 Mile</option>
+            <option value="3000">3000m</option>
+            <option value="3200">3200m</option>
+            <option value="3218.68">2 Mile</option>
+            <option value="5000">5K</option>
+            <option value="8000">8K</option>
+            <option value="10000">10K</option>
+            <option value="21097.5">Half Marathon</option>
+            <option value="42195">Marathon</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="distance-input">Custom Race Distance (meters)</label>
+        <input type="text" id="distance-input">
+    </div>
+
+    <!-- TIME FORM ENTRY-->
+    <div class="form-row">
+        <label>Race Time</label>
+        <div class="time-inputs">
+            <div class="time-field">
+                <input type="number" id="hours" min="0">
+                <label for="hours">Hrs</label>
+            </div>
+            <div class="time-field">
+                <input type="number" id="minutes" min="0" max="59">
+                <label for="minutes">Min</label>
+            </div>
+            <div class="time-field">
+                <input type="number" id="seconds" min="0" max="59">
+                <label for="seconds">Sec</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALCULATE PACES BUTTON -->
+    <button class="calc-btn" onclick="calculatePaces()">Calculate Paces</button>
+
+    <!-- RESULTS -->
+    <div class="results-section" id="results-box">
+        <!-- VDOT DISPLAY-->
+        <div class="vdot-banner">
+            Estimated VDot Score: <strong id="vdotScore">0.0</strong>
+        </div>
+
+        <!-- PACES TABLE -->
+        <table class="pace-table">
+            <thead>
+                <tr>
+                    <th>Zone</th>
+                    <th style="text-align: right;">Pace Range (per Mile)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="zone-title">Estimated 5k Race Pace</td>
+                    <td class="pace-value" id="pace-5k">-</td>
+                </tr>
+                <tr>
+                    <td class="zone-title">Critical Velocity (CV)</td>
+                    <td class="pace-value" id="pace-CV">-</td>
+                </tr>
+                <tr>
+                    <td class="zone-title">Lactic Threshold (LT)</td>
+                    <td class="pace-value" id="pace-LT">-</td>
+                </tr>
+                <tr>
+                    <td class="zone-title">Movin' / Marathon (MP)</td>
+                    <td class="pace-value" id="pace-MP">-</td>
+                </tr>
+                <tr>
+                    <td class="zone-title">Steady Tempo (ST)</td>
+                    <td class="pace-value" id="pace-ST">-</td>
+                </tr>
+                <tr>
+                    <td class="zone-title">Endurance Tempo (ET)</td>
+                    <td class="pace-value" id="pace-ET">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="calculator.js"></script>
+</body>
+</html>
