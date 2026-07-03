@@ -189,11 +189,17 @@ table.pace-table td.pace-value {
     table.pace-table td { font-size: 13px; padding: 12px 4px; }
 }
 
+.equivalent-paces-container {
+    display: block;
+    width: 100%;
+    margin-top: 35px;
+}
+
 /* Container establishing a side-by-side flexbox layout */
 .lower-tables-section {
     display: flex;
     gap: 30px; /* Precise gap matching standard layout grids */
-    margin-top: 35px; /* Matches the top margin spacing of the primary section */
+    margin-top: 0px; /* Matches the top margin spacing of the primary section */
 }
 
 /* Forces both left and right sides to scale evenly to exactly 50% width */
@@ -207,15 +213,14 @@ table.pace-table td.pace-value {
     border-left: 3px solid var(--text-main); /* Uniform structure using black accent line */
     text-align: left;
     padding: 10px 12px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 /* Collapses cleanly into full width on mobile screens */
 @media (max-width: 600px) {
-    .lower-tables-container {
+    .lower-tables-section {
         flex-direction: column;
-        gap: 35px;
-    }
-    .split-table-wrapper.empty-placeholder {
-        display: none; /* Hides the empty space column on phone displays */
+        gap: 0px;
     }
 }

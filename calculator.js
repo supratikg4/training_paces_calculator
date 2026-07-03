@@ -142,9 +142,12 @@ function calculatePaces() {
         {name: "Marathon",      meters: 42195},
     ];
 
-    var tableBody = document.getElementById('equivalent-times-table');
-    tableBody.innerHTML = "";
+    var leftBody = document.getElementById('equivalent-times-left');
+    var rightBody = document.getElementById('equivalent-times-right');
+    leftBody.innerHTML = "";
+    rightBody.innerHTML = "";
 
+    var index = 0;
     equivalentDistances.forEach(function(target) {
         var formattedTime = formatPace(equivalentTimeFromVDot(target.meters, vdot) * 60);
 
@@ -153,7 +156,12 @@ function calculatePaces() {
             <td class="zone-title">${target.name}</td>
             <td class="pace-value" style="color: var(--ncsu-red); text-align: right;">${formattedTime}</td>
         `;
-        tableBody.appendChild(row);
+
+        if (index++ < 6) {
+            leftBody.appendChild(row);
+        } else {
+            rightBody.appendChild(row);
+        }
     });
     createAURow(vdot);
     
@@ -167,7 +175,7 @@ function createAURow(vdot) {
     auRow.innerHTML = `
         <td class="zone-title">1 Astronomical Unit</td>
         <td class="pace-value" style="color: var(--ncsu-red); text-align: right;">
-        ${(equivalentTimeFromVDot(AU, vdot) / (60 * 24 * 365.25)).toFixed(1) + " years.<br>You got it!"}</td>
+        ${(equivalentTimeFromVDot(AU, vdot) / (60 * 24 * 365.25)).toFixed(0) + " years.<br>You got it!"}</td>
     `;
-    document.getElementById('equivalent-times-table').appendChild(auRow);
+    document.getElementById('equivalent-times-right').appendChild(auRow);
 }
