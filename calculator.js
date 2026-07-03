@@ -10,6 +10,9 @@
  * - Endurance Tempo (ET)  : 75-90s
  */
 
+MAX = 500000000;
+AU = 149600000000; // 1 Astronomical Unit in meters
+
 /**
  * Updates distance text entry field with selected dropdown option
  */
@@ -41,7 +44,11 @@ function getVDotScore(distance, time) {
  */
 function equivalentTimeFromVDot(distance, vdot) {
     var low = 0.1;
-    var high = 600;
+    //var high;
+    //if (distance != AU) {high = 600;} else {high = MAX;}
+
+    var high = distance != AU ? 600 : MAX;
+
     var tolerance = 0.00001;
     for (let i = 0; i < 1000; i++) {
         let mid = (low + high) / 2;
@@ -63,14 +70,26 @@ function equivalentTimeFromVDot(distance, vdot) {
     return (low + high) / 2;
 }
 
+/**
+ * Converts total time in seconds to pace in minutes/mile
+ * @param {number} seconds total seconds of time
+ * @returns Formatted pace of time
+ */
 function formatPace(seconds) {
-    var min = Math.floor(seconds / 60);
+    seconds = Math.round(seconds);
+    var hrs = Math.floor(seconds / 3600);
+    var min = Math.floor((seconds % 3600) / 60);
     var sec = Math.round(seconds % 60);
     if (sec === 60) {
         min += 1;
         sec = 0;
     }
-    return min + ":" + (sec < 10 ? "0" : "") + sec;
+
+    if (hrs > 0) {
+        return hrs + ":" + (min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec;
+    } else {
+        return min + ":" + (sec < 10 ? "0" : "") + sec;
+    }
 }
 
 /**
@@ -109,6 +128,46 @@ function calculatePaces() {
     document.getElementById('pace-ST').innerText = formatPace(seconds + 60) + " - " + formatPace(seconds + 70);
     document.getElementById('pace-ET').innerText = formatPace(seconds + 75) + " - " + formatPace(seconds + 90);
 
+    const equivalentDistances = [
+        {name: "800m",          meters: 800},
+        {name: "1000m",         meters: 1000},
+        {name: "1500m",         meters: 1500},
+        {name: "1 Mile",        meters: 1609.34},
+        {name: "3000m",         meters: 3000},
+        {name: "2 Mile",        meters: 3218.68},
+        {name: "5K",            meters: 5000},
+        {name: "8K",            meters: 8000},
+        {name: "10K",           meters: 10000},
+        {name: "Half Marathon", meters: 21097.5},
+        {name: "Marathon",      meters: 42195},
+    ];
+
+    var tableBody = document.getElementById('equivalent-times-table');
+    tableBody.innerHTML = "";
+
+    equivalentDistances.forEach(function(target) {
+        var formattedTime = formatPace(equivalentTimeFromVDot(target.meters, vdot) * 60);
+
+        var row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="zone-title">${target.name}</td>
+            <td class="pace-value" style="color: var(--ncsu-red); text-align: right;">${formattedTime}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+    createAURow(vdot);
+    
     // Render dynamic table view
     document.getElementById('results-box').style.display = 'block';
+}
+
+function createAURow(vdot) {
+    // 1 astronomical unit. Better get training.
+    var auRow = document.createElement('tr');
+    auRow.innerHTML = `
+        <td class="zone-title">1 Astronomical Unit</td>
+        <td class="pace-value" style="color: var(--ncsu-red); text-align: right;">
+        ${(equivalentTimeFromVDot(AU, vdot) / (60 * 24 * 365.25)).toFixed(1) + " years.<br>You got it!"}</td>
+    `;
+    document.getElementById('equivalent-times-table').appendChild(auRow);
 }

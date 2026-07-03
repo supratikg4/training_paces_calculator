@@ -34,7 +34,9 @@ The Vdot equation is then $\frac{VO_2}{\\%VO_2}$. To visualize the VDot equation
 
 ## Training Pace Calculations
 
-Daniel's training paces are split into 5 categories based on the %VDot as a measure of fitness/effort. Our training paces are based off of 5k fitness
+Daniel's training paces are split into 5 categories based on the %VDot as a measure of fitness/effort. Our training paces are based off of 5k fitness, so we first convert the user's performance into their VDot equivalent 5k time, and then calculate paces from that. 
+
+Since the VDot formula is a transcendental equation however ($t$ appears quadratically in the numerator and exponentially in the denominator), we cannot use algebraic methods to reverse-engineer 5k time from VDot score. Instead we use the bisection method (binary search) to estimate the user's 5k race time.
 
 ## References
 - https://www.brenoamelo.com/calculators/vdot?srsltid=AfmBOooGboKvwSWpYgE48MLwSOL4Lmx_g_gaWalOsRn-WeO6657gEFGP

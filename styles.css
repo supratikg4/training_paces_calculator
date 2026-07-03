@@ -188,3 +188,34 @@ table.pace-table td.pace-value {
     .calc-wrapper { padding: 20px; }
     table.pace-table td { font-size: 13px; padding: 12px 4px; }
 }
+
+/* Container establishing a side-by-side flexbox layout */
+.lower-tables-section {
+    display: flex;
+    gap: 30px; /* Precise gap matching standard layout grids */
+    margin-top: 35px; /* Matches the top margin spacing of the primary section */
+}
+
+/* Forces both left and right sides to scale evenly to exactly 50% width */
+.split-table-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Standardizes the sub-banner text properties to cleanly match the theme */
+.vdot-banner.sub-banner {
+    border-left: 3px solid var(--text-main); /* Uniform structure using black accent line */
+    text-align: left;
+    padding: 10px 12px;
+}
+
+/* Collapses cleanly into full width on mobile screens */
+@media (max-width: 600px) {
+    .lower-tables-container {
+        flex-direction: column;
+        gap: 35px;
+    }
+    .split-table-wrapper.empty-placeholder {
+        display: none; /* Hides the empty space column on phone displays */
+    }
+}

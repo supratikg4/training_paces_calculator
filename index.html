@@ -63,7 +63,7 @@
     <div class="results-section" id="results-box">
         <!-- VDOT DISPLAY-->
         <div class="vdot-banner">
-            Estimated VDot Score: <strong id="vdotScore">0.0</strong>
+            VDot Score: <strong id="vdotScore">0.0</strong>
         </div>
 
         <!-- PACES TABLE -->
@@ -101,6 +101,44 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="lower-tables-section">
+
+            <!-- EQUIVALENT RACES TABLE -->
+            <div class="split-table-wrapper">
+                <div class="vdot-banner sub-banner">Estimated VDot Race Performances</div>
+                <table class="pace-table">
+                    <thead>
+                        <tr>
+                            <th>Distance</th>
+                            <th style="text-align: right;">VDot Equivalent Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equivalent-times-table"></tbody>
+                </table>
+            </div>
+
+            <!-- DANIELS TRAINING PACES TABLE-->
+            <!-- <div class="split-table-wrapper">
+                <div class="vdot-banner sub-banner">
+                    Future Pace Table (Placeholder)
+                </div>
+                <table class="pace-table">
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th style="text-align: right;">Pace Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="zone-title">Coming Soon...</td>
+                            <td class="pace-value" style="color: var(--text-main);">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+        </div>
     </div>
 </div>
 <script src="calculator.js"></script>
