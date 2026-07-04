@@ -175,7 +175,7 @@ function createAURow(vdot) {
     auRow.innerHTML = `
         <td class="zone-title">1 Astronomical Unit</td>
         <td class="pace-value" style="color: var(--ncsu-red); text-align: right;">
-        ${(equivalentTimeFromVDot(AU, vdot) / (60 * 24 * 365.25)).toFixed(0) + " years.<br>You got it!"}</td>
+        ${(equivalentTimeFromVDot(AU, vdot) / (60 * 24 * 365.25)).toFixed(0) + " years,<br>you got it!"}</td>
     `;
     document.getElementById('equivalent-times-right').appendChild(auRow);
 }
