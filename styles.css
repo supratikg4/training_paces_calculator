@@ -223,4 +223,20 @@ table.pace-table td.pace-value {
         flex-direction: column;
         gap: 0px;
     }
+
+    .lower-tables-section .split-table-wrapper:last-child thead {
+        display: none;
+    }
+
+    .lower-tables-section .split-table-wrapper:first-child table {
+        margin-bottom: 0;
+    }
+
+    .lower-tables-section .split-table-wrapper:last-child table {
+        margin-top: 0;
+    }
+
+    .lower-tables-section .split-table-wrapper:first-child table tr:last-child td {
+        border-bottom: 1px solid var(--border-color);
+    }
 }
