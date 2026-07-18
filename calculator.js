@@ -96,16 +96,33 @@ function formatPace(seconds) {
  * Gets training paces from user entered values
  */
 function calculatePaces() {
+    // Reset previous errors and hide results container
+    document.getElementById('distance-error').innerText = "";
+    document.getElementById('distance-error').style.display = "none";
+    document.getElementById('time-error').innerText = "";
+    document.getElementById('time-error').style.display = "none";
+    document.getElementById('results-box').style.display = 'none';
+
     // Get values from input
     var d = parseFloat(document.getElementById('distance-input').value);
-    if (isNaN(d) || d <= 0) return alert("Please enter a valid race distance.");
+    if (isNaN(d) || d <= 0) {
+        var distanceError = document.getElementById('distance-error');
+        distanceError.innerText = "Please enter a valid race distance.";
+        distanceError.style.display = "block";
+        return;
+    }
 
     var h = parseInt(document.getElementById('hours').value) || 0;
     var m = parseInt(document.getElementById('minutes').value) || 0;
     var s = parseInt(document.getElementById('seconds').value) || 0;
 
     var minutes = (h * 60) + m + (s / 60);
-    if (minutes <= 0) return alert("Please enter a valid time.");
+    if (minutes <= 0) {
+        var distanceError = document.getElementById('time-error');
+        distanceError.innerText = "Please enter a valid time.";
+        distanceError.style.display = "block";
+        return;
+    }
 
     // Calculate VDot explicitly
     var vdot = getVDotScore(d, minutes);
